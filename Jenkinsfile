@@ -1,6 +1,8 @@
 pipeline {
     agent any
-
+    tools {
+        maven 'Maven_3.9'
+    }
     stages {
         stage('Build') {
             steps {
@@ -8,14 +10,12 @@ pipeline {
                 sh 'mvn clean package'
             }
         }
-
         stage('Test') {
             steps {
                 echo 'Running tests...'
                 sh 'mvn test'
             }
         }
-
         stage('Archive') {
             steps {
                 echo 'Archiving build artifacts...'
